@@ -13,8 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
 	private PostController controller;
-	private PostService service;
-	private PostRepository repository;
 
 	@Override
 	public void init() {
