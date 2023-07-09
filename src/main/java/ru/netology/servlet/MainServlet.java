@@ -18,26 +18,9 @@ public class MainServlet extends HttpServlet {
 
 	@Override
 	public void init() {
-		//final var context = new AnnotationConfigApplicationContext("ru.netology");
 		context = new AnnotationConfigApplicationContext("ru.netology");
 		controller = context.getBean(PostController.class);
-		service = context.getBean(PostService.class);
-		repository = context.getBean(PostRepository.class);
-
-		//final var repository = new PostRepository();
-		//final var service = new PostService(repository);
-		//controller = new PostController(service);
 	}
-	/*
-	public static void main(String[] args) {
-		final var context = new AnnotationConfigApplicationContext("ru.netology");
-		final var controller = context.getBean("postController");
-		final var service = context.getBean("postService");
-		final var repository = context.getBean("postRepository");
-		//final var isSame = service == context.getBean("PostService");
-	}
-	*/
-
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) {
