@@ -1,8 +1,11 @@
 package ru.netology.servlet;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 import ru.netology.controller.PostController;
 import ru.netology.repository.PostRepository;
 import ru.netology.service.PostService;
+import ru.netology.config.JavaConfig;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,12 +13,13 @@ import javax.servlet.http.HttpServletResponse;
 
 public class MainServlet extends HttpServlet {
 	private PostController controller;
+	private PostService service;
+	private PostRepository repository;
 
 	@Override
 	public void init() {
-		final var repository = new PostRepository();
-		final var service = new PostService(repository);
-		controller = new PostController(service);
+		final var context = new AnnotationConfigApplicationContext(JavaConfig.class);
+		controller = context.getBean(PostController.class);
 	}
 
 	@Override
@@ -45,10 +49,6 @@ public class MainServlet extends HttpServlet {
 				controller.removeById(id, resp);
 				return;
 			}
-			// resp.setStatus(HttpServletResponse.SC_NOT_FOUND);
-			//resp.setHeader("Content-Type", "application/json");
-			//resp.getWriter().print("{\"message\":\"Hello from servelet\"}");
-			//resp.getWriter().print("Hello from servelet");
 		} catch (Exception e) {
 			e.printStackTrace();
 			resp.setStatus(HttpServletResponse.SC_INTERNAL_SERVER_ERROR);
