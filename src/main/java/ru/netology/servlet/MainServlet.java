@@ -12,13 +12,11 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 public class MainServlet extends HttpServlet {
 	private PostController controller;
-	private PostService service;
-	private PostRepository repository;
-	private AnnotationConfigApplicationContext context;
+	//private AnnotationConfigApplicationContext context;
 
 	@Override
 	public void init() {
-		context = new AnnotationConfigApplicationContext("ru.netology");
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext("ru.netology");
 		controller = context.getBean(PostController.class);
 	}
 
