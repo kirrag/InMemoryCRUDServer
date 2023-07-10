@@ -8,14 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+
 public class MainServlet extends HttpServlet {
 	private PostController controller;
 
 	@Override
 	public void init() {
-		final var repository = new PostRepository();
-		final var service = new PostService(repository);
-		controller = new PostController(service);
+		final var context = new AnnotationConfigApplicationContext("ru.netology");
+		controller = context.getBean(PostController.class);
 	}
 
 	@Override

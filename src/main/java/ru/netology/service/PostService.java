@@ -6,6 +6,9 @@ import ru.netology.repository.PostRepository;
 
 import java.util.Map;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class PostService {
 	private final PostRepository repository;
 
